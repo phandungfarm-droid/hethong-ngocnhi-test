@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -6,12 +6,7 @@
 <title>HỆ THỐNG ĐA NGÀNH NGỌC NHI</title>
 <link rel="preconnect" href="https://googleapis.com">
 <link href="https://googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<script src="https://cloudflare.com"></script>
-<script src="https://gstatic.com"></script>
-<script src="https://gstatic.com"></script>
-<script src="https://gstatic.com"></script>
-<script src="https://gstatic.com"></script>
-<script src="https://cloudflare.com"></script>
+
 <style>
   :root{
     --bark:#241d16; --soil:#3d3223; --burrow:#5c4a34; --straw:#efe6cf; --straw-2:#e4d8ba;
@@ -27,7 +22,6 @@
   .brand-mark{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--clay-lt),var(--clay) 55%,var(--moss-dk) 100%);position:relative;}
   .brand-mark::after{content:'';position:absolute;inset:9px;border-radius:50%;background:var(--bark);}
   .brand-text b{font-family:'Fraunces',serif;font-size:17px;color:var(--paper);}
-  .crumbs button{background:none;color:var(--straw-2);padding:2px 4px;border-radius:6px;font-size:13px;}
   .role-switch button{padding:6px 12px;border-radius:99px;font-size:12.5px;color:var(--straw-2);background:none;font-weight:600;}
   .role-switch button.active{background:var(--clay);color:#2a1a06;}
   .btn{padding:9px 15px;border-radius:10px;font-weight:600;font-size:13.5px;display:inline-flex;align-items:center;gap:7px;transition:transform .1s ease;border:none;cursor:pointer;}
@@ -64,84 +58,96 @@
   <div class="topbar">
     <div class="brand">
       <div class="brand-mark"></div>
-      <div class="brand-text"><b>HỆ THỐNG ĐA NGÀNH NGỌC NHI</b><br><span style="font-size:11px;color:var(--straw-2)">AI TỔNG QUẢN</span></div>
-    </div>
-    <div class="crumbs">
-      <button onclick="switchPhanHe('farm')">🐗 Trại Dúi</button><span style="color:white">/</span>
-      <button onclick="switchPhanHe('restaurant')">🍲 Quán Ăn</button><span style="color:white">/</span>
-      <button onclick="switchPhanHe('wedding')">💒 Tiệc Cưới</button>
+      <div class="brand-text"><b>HỆ THỐNG ĐA NGÀNH NGỌC NHI</b><br><span style="font-size:11px;color:var(--straw-2)">AI TỔNG QUẢN VẬN HÀNH</span></div>
     </div>
     <div class="role-switch"><button class="active">Giám Đốc (AI CEO)</button></div>
   </div>
 
-  <div class="section-title"><h2>📊 Số Liệu Điều Hành Hệ Thống</h2><span class="badge">Đã kết nối Firebase</span></div>
+  <div class="section-title"><h2>📊 Số Liệu Điều Hành Hệ Thống</h2><span class="badge">Mạng Thời Gian Thực</span></div>
   <div class="grid g4">
     <div class="stat"><div class="num" id="stat-farm-total">--</div><div class="lbl">DÚI THƯƠNG PHẨM TRONG KHO</div></div>
     <div class="stat"><div class="num" id="stat-menu-status">🟢 ĐỦ</div><div class="lbl">MENU QUÁN ĂN ONLINE</div></div>
     <div class="stat warn"><div class="num" id="stat-wedding-total">0</div><div class="lbl">ĐƠN TIỆC CHỜ SẾP DUYỆT</div></div>
-    <div class="stat style="background:var(--bark);color:white;cursor:pointer;" onclick="guiBaoCaoTraiDuiHàngNgay()"><div class="num" style="color:var(--clay-lt)">📲</div><div class="lbl">BẤM GỬI BÁO CÁO QUA ĐIỆN THOẠI</div></div>
+    <div class="stat" style="background:var(--bark);color:white;cursor:pointer;border-radius:12px;" onclick="guiBaoCaoTraiDuiHangNgay()"><div class="num" style="color:var(--clay-lt)">📲</div><div class="lbl" style="color:var(--straw-2)">GỬI BÁO CÁO QUA ĐIỆN THOẠI</div></div>
   </div>
 
-  <div id="panel-farm" class="section-block">
-    <div class="section-title"><h2>🐗 1. Phân Hệ Quản Lý Trang Trại Dúi</h2></div>
-    <div class="grid g3">
-      <div class="card pad">
-        <h3>Sản Lượng Xuất Kho</h3>
-        <input type="number" id="input-farm-dui-qty" value="120" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;margin-bottom:10px;">
-        <button class="btn btn-primary" style="width:100%" onclick="updateFarmInventoryFromApp()">Cập Nhật Kho Hàng</button>
-      </div>
-      <div class="card pad">
-        <h3>Mã QR Từng Dãy Chuồng</h3>
-        <button class="btn btn-clay" style="width:100%" onclick="generateQR('Chuồng A01 - Dãy nuôi thương phẩm')">Mã QR Chuồng A01</button>
-      </div>
-      <div class="card pad">
-        <h3>Sơ Đồ Chuồng Trại Chi Tiết</h3>
-        <div class="cage-grid">
-          <div class="hole occupied" onclick="baoCaoSuCoChuong('A01', 'Dúi khỏe mạnh')"><b>A01</b><code>5 con</code><div class="dot"></div></div>
-          <div class="hole pairing" onclick="baoCaoSuCoChuong('B01', 'Đã phối giống')"><b>B01</b><code>2 con</code><div class="dot"></div></div>
-          <div class="hole treat" onclick="baoCaoSuCoChuong('C01', '🚨 DÚI ỐM BỎ ĂN')"><b>C01</b><code>1 con</code><div class="dot"></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="panel-restaurant" class="section-block">
-    <div class="section-title"><h2>🍲 2. Phân Hệ Quản Lý Quán Ăn</h2></div>
-    <div class="grid g2">
-      <div class="card pad">
-        <h3>Mã QR In Dán Tại Bàn Ăn</h3>
-        <button class="btn btn-clay" onclick="generateQR('https://ngocnhi.vn')">Mã QR Gọi Món Bàn 1</button>
-        <hr style="border:0;border-top:1px solid var(--line);margin:15px 0;">
-        <button class="btn btn-alert" style="width:100%" onclick="giaLapKhachDatMonOnline()">🔥 Bấm Giả Lập Khách Đặt Món</button>
-      </div>
-      <div class="card pad">
-        <h3>Hệ Thống AI Bảo Vệ Thực Đơn (AI Guard)</h3>
-        <div id="ai-guard-text" style="font-weight:bold;color:var(--moss)">🟢 Mạng hoạt động ổn định.</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="panel-wedding" class="section-block">
-    <div class="section-title"><h2>💒 3. Phân Hệ Kế Hoạch Tiệc Cưới</h2></div>
+  <!-- PHÂN HỆ 1: TRANG TRẠI DÚI -->
+  <div class="section-title" style="margin-top:30px;"><h2>🐗 1. Phân Hệ Quản Lý Trang Trại Dúi</h2></div>
+  <div class="grid g3">
     <div class="card pad">
-      <h3>Tiếp Nhận Đơn Tiệc Cưới Mới (AI tự rà kho)</h3>
-      <div class="grid g3">
-        <div><label>Tên khách hàng:</label><input type="text" id="wedding-customer" value="Đơn tiệc mẫu VIP" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--line);"></div>
-        <div><label>Số lượng Dúi (con):</label><input type="number" id="wedding-dui-qty" value="50" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--line);"></div>
-        <div style="display:flex;align-items:flex-end;"><button class="btn btn-primary" style="width:100%" onclick="processNewWeddingOrder()">Bắn Đơn Đặt Tiệc</button></div>
+      <h3>Sản Lượng Xuất Kho</h3>
+      <input type="number" id="input-farm-dui-qty" value="120" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;margin-bottom:10px;">
+      <button class="btn btn-primary" style="width:100%" onclick="updateFarmInventoryFromApp()">Cập Nhật Kho Hàng</button>
+    </div>
+    <div class="card pad">
+      <h3>Mã QR Từng Dãy Chuồng</h3>
+      <button class="btn btn-clay" style="width:100%" onclick="generateQR('Chuồng A01 - Dãy nuôi thương phẩm Ngọc Nhi')">Mã QR Chuồng A01</button>
+    </div>
+    <div class="card pad">
+      <h3>Sơ Đồ Chuồng Trại Chi Tiết</h3>
+      <div class="cage-grid">
+        <div class="hole occupied" onclick="baoCaoSuCoChuong('A01', 'Dúi khỏe mạnh')"><b>A01</b><code>5 con</code><div class="dot"></div></div>
+        <div class="hole pairing" onclick="baoCaoSuCoChuong('B01', 'Đã phối giống')"><b>B01</b><code>2 con</code><div class="dot"></div></div>
+        <div class="hole treat" onclick="baoCaoSuCoChuong('C01', '🚨 DÚI ỐM BỎ ĂN')"><b>C01</b><code>1 con</code><div class="dot"></div></div>
       </div>
-      <div id="wedding-status-alert" style="margin-top:15px;font-weight:bold;"></div>
     </div>
   </div>
 
-  <div class="section-title"><h2>📋 Nhật Ký Vận Hành & Máy In QR</h2></div>
+  <!-- PHÂN HỆ 2: QUÁN ĂN NHỎ -->
+  <div class="section-title" style="margin-top:30px;"><h2>🍲 2. Phân Hệ Quản Lý Quán Ăn</h2></div>
+  <div class="grid g2">
+    <div class="card pad">
+      <h3>Mã QR In Dán Tại Bàn Ăn</h3>
+      <button class="btn btn-clay" onclick="generateQR('https://ngocnhi.vn')">Mã QR Gọi Món Bàn 1</button>
+      <hr style="border:0;border-top:1px solid var(--line);margin:15px 0;">
+      <button class="btn btn-alert" style="width:100%" onclick="giaLapKhachDatMonOnline()">🔥 Bấm Giả Lập Khách Đặt Món</button>
+    </div>
+    <div class="card pad">
+      <h3>Hệ Thống AI Bảo Vệ Thực Đơn (AI Guard)</h3>
+      <div id="ai-guard-text" style="font-weight:bold;color:var(--moss)">🟢 Mạng hoạt động ổn định.</div>
+    </div>
+  </div>
+
+  <!-- PHÂN HỆ 3: TIỆC CƯỚI -->
+  <div class="section-title" style="margin-top:30px;"><h2>💒 3. Phân Hệ Kế Hoạch Tiệc Cưới</h2></div>
+  <div class="card pad">
+    <h3>Tiếp Nhận Đơn Tiệc Cưới Mới (AI tự rà kho)</h3>
+    <div class="grid g3">
+      <div><label>Tên khách hàng:</label><input type="text" id="wedding-customer" value="Đơn tiệc mẫu VIP" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--line);"></div>
+      <div><label>Số lượng Dúi (con):</label><input type="number" id="wedding-dui-qty" value="50" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--line);"></div>
+      <div style="display:flex;align-items:flex-end;"><button class="btn btn-primary" style="width:100%" onclick="processNewWeddingOrder()">Bắn Đơn Đặt Tiệc</button></div>
+    </div>
+    <div id="wedding-status-alert" style="margin-top:15px;font-weight:bold;"></div>
+  </div>
+
+  <!-- NHẬT KÝ HỆ THỐNG -->
+  <div class="section-title" style="margin-top:30px;"><h2>📋 Nhật Ký Vận Hành & Máy In QR</h2></div>
   <div class="grid g2">
     <div class="card pad">
       <div style="overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--paper);">
         <table class="task-table">
           <thead><tr><th>Mã Số</th><th>Nội Dung Chi Tiết</th><th>Bộ Phận</th></tr></thead>
-          <tbody id="log-table-body"><tr><td><b>#001</b></td><td>Hệ thống kết nối Firebase mới thành công.</td><td><span class="badge">Hệ thống</span></td></tr></tbody>
+          <tbody id="log-table-body">
+            <tr><td><b>#001</b></td><td>Hệ thống đồng bộ chuẩn dữ liệu thời gian thực.</td><td><span class="badge">Hệ thống</span></td></tr>
+          </tbody>
         </table>
       </div>
       <button class="btn btn-primary" style="margin-top:10px;font-size:12px;padding:6px 12px;" onclick="exportExcelReport()">📊 Xuất Báo Cáo Excel</button>
     </div>
+    <div class="card pad" style="text-align:center;background:var(--bark);color:white;">
+      <div id="qr-space" style="display:inline-block;padding:10px;background:white;border-radius:10px;"></div>
+      <div id="qr-label" style="margin-top:8px;font-family:'JetBrains Mono';font-size:12px;color:var(--clay-lt)">Hệ thống sẵn sàng</div>
+    </div>
+  </div>
+</div>
+
+<!-- NẠP THƯ VIỆN Ở CUỐI FILE ĐỂ TRÁNH LỖI TREO TRÌNH DUYỆT -->
+<script src="https://cloudflare.com"></script>
+<script src="https://gstatic.com"></script>
+<script src="https://gstatic.com"></script>
+<script src="https://gstatic.com"></script>
+<script src="https://gstatic.com"></script>
+<script src="https://cloudflare.com"></script>
+
+<script>
+// --- KHỞI TẠO MẠNG FIREBASE ĐA NGÀNH MỚI TINH CỦA ANH NGỌC NHI ---
